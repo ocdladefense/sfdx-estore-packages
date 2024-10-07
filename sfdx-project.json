@@ -3,20 +3,13 @@
   "namespace": "",
   "packageDirectories": [
     {
-      "path": "sfdx-source/Modules/default",
-      "package": "DefaultModule",
-      "versionName": "ver 0.1",
+      "path": "sfdx-source/Modules/events",
+      "package": "eStore Events",
+      "versionName": "Fall '24",
       "versionNumber": "0.1.0.NEXT",
       "default": false,
-      "versionDescription": "Created as part of the GitHub template for sfdx repositories.",
-      "dependencies": [
-        {
-            "package": "Json"
-        },
-        {
-            "package": "Http"
-        }
-      ]
+      "versionDescription": "Event list and registration for the OCDLA website.",
+      "dependencies": []
     },
     {
         "path": "sfdx-source/unpackaged",
