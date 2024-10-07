@@ -1,0 +1,103 @@
+<apex:page controller="ClickpdxEventList" showHeader="false" standardStylesheets="false" docType="html-5.0" cache="false" applyHtmlTag="false" applyBodyTag="false">
+    
+    <apex:composition template="{!template}">
+        
+        <apex:define name="title">
+            <title>OCDLA Events</title> 
+        </apex:define>
+        
+        <apex:define name="styles">
+            
+            <link type="text/css" rel="stylesheet" href="//{!domain}/sites/force.com/assets/css/event-list.css" />
+            
+            <!--[if lt IE 9]>
+<style>
+.iewarning { display: block; }
+</style>
+<![endif]--> 
+            
+        </apex:define>
+        
+        <apex:define name="head-scripts">
+            
+            <script type="text/javascript">
+            
+            </script>
+            
+        </apex:define>
+        
+        <apex:define name="body">
+
+            
+            <div class="row two-columns">
+                    
+                <div class="column column-first">
+                    <div class="content">
+                        
+                        <div class="catalog-menu">
+                            <apex:outputText escape="false" value="{!menu}" />                        
+                        </div>
+                        
+                    </div>
+                </div>
+    
+                <div id="eventList" class="main column catalog-list">
+                <div class="content">
+                    
+                    
+                    <apex:pageMessages showDetail="True" id="myPageMessages"></apex:pageMessages>
+                    <h1>
+                        OCDLA Events
+                    </h1>
+                      
+                     
+                    <apex:repeat value="{!theEvents}" var="y">
+                        <div class="event-year">
+                            {!y.sectionTitle}                            
+                        </div>
+                       <apex:repeat value="{!theEvents[y]}" var="e">
+                            <div class="event-item"> 
+                                
+                                <h2 class="event-title">
+                                    <a href="/OcdlaEvent?id={!e.theId}">{!e.name}</a>
+                                </h2>
+                                <span>
+                                    {!e.dateText}
+                                </span>
+                                <span class="event-location">{!e.locationText}</span>
+                                <apex:variable var="hasRelated" value="" rendered="{!e.hasRelatedProducts}">
+                                    <div class="related-products">
+                                        <apex:repeat value="{!e.related}" var="p">
+                                            <apex:outputPanel layout="block" rendered="{!p.EnablePairing__c}" styleClass="related-product">
+                                                <a href="/OcdlaProduct?id={!BLANKVALUE(p.Product__r.ClickpdxCatalog__ParentProduct__c,p.Product__c)}">
+                                                    <span class="related-product-name">
+                                                        {!p.Name}
+                                                    </span>
+                                                    <span class="related-product-price">
+                                                        <apex:outputText value="{!BLANKVALUE(p.PriceOverride__c,p.Product__r.ClickpdxCatalog__StandardPrice__c)}" />
+                                                    </span>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:variable>
+
+                            </div>
+                        </apex:repeat>
+                        
+                   </apex:repeat>
+                    
+
+                    
+                </div>
+            </div>
+
+            </div>
+        </apex:define>
+        
+        <apex:define name="javascripts"></apex:define>
+        
+    </apex:composition>
+    
+    
+</apex:page>
