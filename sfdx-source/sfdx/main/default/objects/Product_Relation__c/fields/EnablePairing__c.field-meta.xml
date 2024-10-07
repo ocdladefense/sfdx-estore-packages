@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EnablePairing__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates that this Product Relation can be paired with its related Object in Lists.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this box to pair this Product Relation with its related Object in Lists.</inlineHelpText>
+    <label>EnablePairing</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

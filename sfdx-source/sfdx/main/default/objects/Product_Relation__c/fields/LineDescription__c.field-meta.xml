@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LineDescription__c</fullName>
+    <description>If not blank, this field will override the related Product&apos;s own Line Description field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter an alternate Line Description for the related Product.  Leave this field blank to use the Product&apos;s own Line Description in places like the checkout receipt.</inlineHelpText>
+    <label>Line Description</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

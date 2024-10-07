@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PriceOverride__c</fullName>
+    <description>An alternate Unit Price.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter an alternate Unit Price for the Product.  If left blank, the Standard Price for the Product will be charged to the customer.</inlineHelpText>
+    <label>Price Override</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
