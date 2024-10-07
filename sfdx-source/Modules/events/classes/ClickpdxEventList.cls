@@ -5,6 +5,10 @@ global without sharing class ClickpdxEventList extends CommunityController {
     
     public List<ClickpdxEvent> theEvents;
     
+    public Map<Integer,List<ClickpdxEvent>> events {get; private set;}
+    
+    public List<Integer> years {get; private set;}
+    
     public static List<Product_Relation__c> relatedProducts {get;private set;}
     
     public String profileName {get;private set;}
@@ -16,15 +20,25 @@ global without sharing class ClickpdxEventList extends CommunityController {
     
     
     public ClickpdxEventList() {
+        years = new List<Integer>{2025,2024,2023,2022};
+		events = new Map<Integer,List<ClickpdxEvent>>();
 
-
-        List<Event__c> events = Database.query(query +' WHERE Include_In_Catalog__c=True ORDER BY Start_Date__c ASC');
-        
-        try {
-            theEvents = ClickpdxEvent.newFromSObjects(events);  
-        } catch(System.SObjectException e) {
+        for(Integer year : years) {
+            List<Event__c> results = Database.query(query +' WHERE Include_In_Catalog__c=True AND CALENDAR_YEAR(Start_Date__c) = :year ORDER BY Start_Date__c ASC'); 
             
+                try {
+            List<ClickpdxEvent> theEvents = ClickpdxEvent.newFromSObjects(results);  
+            events.put(year,theEvents);
+        } catch(System.SObjectException e) {
+            throw e;
         }
+
+        }
+
+        
+
+
+
     }
     
     
@@ -32,7 +46,7 @@ global without sharing class ClickpdxEventList extends CommunityController {
     
     
     
-    
+    /*
     // Events grouped by Year
     public Map<EventListKey,List<ClickpdxEvent>> getTheEvents(){
         Map<EventListKey,List<ClickpdxEvent>> eventsByYear = new Map<EventListKey,List<ClickpdxEvent>>();
@@ -64,7 +78,7 @@ global without sharing class ClickpdxEventList extends CommunityController {
     
     
 
-
+*/
     
     public static List<Product_Relation__c> getRelatedProducts(Set<Id> eventIds, Id eventId) {
         if(null == relatedProducts) {
@@ -87,6 +101,6 @@ global without sharing class ClickpdxEventList extends CommunityController {
         return related;
     }    
 
-    
+ 
 
 }

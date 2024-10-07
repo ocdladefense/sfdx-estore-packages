@@ -42,7 +42,7 @@
                 </div>
     
                 <div id="eventList" class="main column catalog-list">
-                <div class="content">
+                	<div class="content">
                     
                     
                     <apex:pageMessages showDetail="True" id="myPageMessages"></apex:pageMessages>
@@ -51,36 +51,20 @@
                     </h1>
                       
                      
-                    <apex:repeat value="{!theEvents}" var="y">
+                    <apex:repeat value="{!years}" var="y">
                         <div class="event-year">
-                            {!y.sectionTitle}                            
+                            {!y}                            
                         </div>
-                       <apex:repeat value="{!theEvents[y]}" var="e">
+                       <apex:repeat value="{!events[y]}" var="e">
                             <div class="event-item"> 
                                 
                                 <h2 class="event-title">
                                     <a href="/OcdlaEvent?id={!e.theId}">{!e.name}</a>
                                 </h2>
                                 <span>
-                                    {!e.dateText}
+                                    {!e.dateText}&nbsp;|&nbsp;
                                 </span>
                                 <span class="event-location">{!e.locationText}</span>
-                                <apex:variable var="hasRelated" value="" rendered="{!e.hasRelatedProducts}">
-                                    <div class="related-products">
-                                        <apex:repeat value="{!e.related}" var="p">
-                                            <apex:outputPanel layout="block" rendered="{!p.EnablePairing__c}" styleClass="related-product">
-                                                <a href="/OcdlaProduct?id={!BLANKVALUE(p.Product__r.ClickpdxCatalog__ParentProduct__c,p.Product__c)}">
-                                                    <span class="related-product-name">
-                                                        {!p.Name}
-                                                    </span>
-                                                    <span class="related-product-price">
-                                                        <apex:outputText value="{!BLANKVALUE(p.PriceOverride__c,p.Product__r.ClickpdxCatalog__StandardPrice__c)}" />
-                                                    </span>
-                                                </a>
-                                            </apex:outputPanel>
-                                        </apex:repeat>
-                                    </div>
-                                </apex:variable>
 
                             </div>
                         </apex:repeat>
@@ -90,7 +74,7 @@
 
                     
                 </div>
-            </div>
+            	</div>
 
             </div>
         </apex:define>
